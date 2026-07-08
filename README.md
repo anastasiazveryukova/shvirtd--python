@@ -80,6 +80,54 @@ See 'snap info docker' for additional versions.
 
 6. Остановите проект. В качестве ответа приложите скриншот sql-запроса.
 
+Создаем compose.yaml
+```
+# Убираем устаревшую версию 3.7
+include:
+  - proxy.yaml
+
+volumes:
+  db_mysql:
+
+services:
+
+  db:
+    image: mysql:8
+    restart: on-failure
+    env_file:
+      - .env
+    volumes:
+      - db_mysql:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 3306:3306
+    networks:
+      backend:
+        ipv4_address: 172.20.0.10
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 5
+
+  web:
+    build:
+          dockerfile: Dockerfile.python
+    restart: on-failure
+    environment:
+      DB_HOST: db
+      DB_TABLE: requests
+      DB_PORT: 3306
+      DB_NAME: ${MYSQL_DATABASE}
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+    depends_on:
+        db:
+          condition: service_healthy
+    networks:
+      backend:
+        ipv4_address: 172.20.0.5
+    
+```
 
 <img width="759" height="621" alt="Снимок экрана 2026-07-07 135308" src="https://github.com/user-attachments/assets/fe2b88a0-7bd4-415f-8353-54b9b8cfe447" />
 
@@ -94,6 +142,25 @@ See 'snap info docker' for additional versions.
 5. (Необязательная часть) Дополнительно настройте remote ssh context к вашему серверу. Отобразите список контекстов и результат удаленного выполнения ```docker ps -a```
 6. Повторите SQL-запрос на сервере и приложите скриншот и ссылку на fork.
 
+Создаем простой bash.sh 
+
+```
+#!/bin/bash
+echo "Cloning the project from GitHub"
+  git clone https://github.com/anastasiazveryukova/shvirtd-example-python.git
+echo "Done"
+
+echo "Entering the project directory"
+  cd shvirtd-example-python
+echo "Done"
+
+echo "Creating docker containers: db, app, proxy and nginx"
+  sudo docker compose up -d
+echo "Done"
+
+echo "List of containers"
+  sudo docker ps
+```
 <img width="1398" height="1009" alt="Снимок экрана 2026-07-07 164040" src="https://github.com/user-attachments/assets/41c292ad-4b59-4187-88c9-9552242c97a1" />
 
 <img width="1920" height="1092" alt="Снимок экрана 2026-07-07 164232" src="https://github.com/user-attachments/assets/8d64a2a2-990a-4382-9994-c85f5899463a" />
