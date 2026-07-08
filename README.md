@@ -185,6 +185,8 @@ https://github.com/anastasiazveryukova/shvirtd-example-python.git
 ## Задача 6
 Скачайте docker образ ```hashicorp/terraform:latest``` и скопируйте бинарный файл ```/bin/terraform``` на свою локальную машину, используя dive и docker save.
 Предоставьте скриншоты  действий .
+
+
 С помощью dive и docker save не удалось извлечь бинарный файл, а через docker cp это делается проще и быстрее.
 
 <img width="1357" height="469" alt="Снимок экрана 2026-07-08 153254" src="https://github.com/user-attachments/assets/63160a08-8812-4156-bf06-143e185f5477" />
