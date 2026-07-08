@@ -40,6 +40,10 @@ See 'snap info docker' for additional versions.
 2.1 Используйте multistage сборку вместо single stage.
 3. (Необязательная часть, *) Изучите инструкцию в проекте и запустите web-приложение без использования docker, с помощью venv. (Mysql БД можно запустить в docker run).
 4. (Необязательная часть, *) Изучите код приложения и добавьте управление названием таблицы через ENV переменную.
+
+<img width="752" height="638" alt="Снимок экрана 2026-07-07 114736" src="https://github.com/user-attachments/assets/27d3c387-f181-4bcc-89c3-4989869678fd" />
+
+
 ---
 ### ВНИМАНИЕ!
 !!! В процессе последующего выполнения ДЗ НЕ изменяйте содержимое файлов в fork-репозитории! Ваша задача ДОБАВИТЬ 5 файлов: ```Dockerfile.python```, ```compose.yaml```, ```.gitignore```, ```.dockerignore```,```bash-скрипт```. Если вам понадобилось внести иные изменения в проект - вы что-то делаете неверно!
@@ -51,6 +55,14 @@ See 'snap info docker' for additional versions.
 3. Соберите и залейте в него образ с python приложением из задания №1.
 4. Просканируйте образ на уязвимости.
 5. В качестве ответа приложите отчет сканирования.
+
+<img width="750" height="485" alt="Снимок экрана 2026-07-07 130153" src="https://github.com/user-attachments/assets/c102a566-f1ed-4310-b08b-30b46f7744b4" />
+
+<img width="747" height="307" alt="Снимок экрана 2026-07-07 130023" src="https://github.com/user-attachments/assets/7e301b93-2174-48d5-b82b-8ce592e576c4" />
+
+<img width="1920" height="1018" alt="Снимок экрана 2026-07-07 125843" src="https://github.com/user-attachments/assets/fd82fcdf-b393-4d29-bc09-4d5130535ef3" />
+
+<img width="1920" height="399" alt="Снимок экрана 2026-07-07 130225" src="https://github.com/user-attachments/assets/d7a11a2c-3429-4cda-a61f-f8ff86f094a1" />
 
 ## Задача 3
 1. Изучите файл "proxy.yaml"
@@ -68,6 +80,12 @@ See 'snap info docker' for additional versions.
 
 6. Остановите проект. В качестве ответа приложите скриншот sql-запроса.
 
+
+<img width="759" height="621" alt="Снимок экрана 2026-07-07 135308" src="https://github.com/user-attachments/assets/fe2b88a0-7bd4-415f-8353-54b9b8cfe447" />
+
+<img width="1341" height="964" alt="Снимок экрана 2026-07-07 144737" src="https://github.com/user-attachments/assets/5219ba2c-3fde-44d3-bb5a-13dbe41408dd" />
+
+
 ## Задача 4
 1. Запустите в Yandex Cloud ВМ (вам хватит 2 Гб Ram).
 2. Подключитесь к Вм по ssh и установите docker.
@@ -75,6 +93,21 @@ See 'snap info docker' for additional versions.
 4. Зайдите на сайт проверки http подключений, например(или аналогичный): ```https://check-host.net/check-http``` и запустите проверку вашего сервиса ```http://<внешний_IP-адрес_вашей_ВМ>:8090```. Таким образом трафик будет направлен в ingress-proxy. Трафик должен пройти через цепочки: Пользователь → Internet → Nginx → HAProxy → FastAPI(запись в БД) → HAProxy → Nginx → Internet → Пользователь
 5. (Необязательная часть) Дополнительно настройте remote ssh context к вашему серверу. Отобразите список контекстов и результат удаленного выполнения ```docker ps -a```
 6. Повторите SQL-запрос на сервере и приложите скриншот и ссылку на fork.
+
+<img width="1398" height="1009" alt="Снимок экрана 2026-07-07 164040" src="https://github.com/user-attachments/assets/41c292ad-4b59-4187-88c9-9552242c97a1" />
+
+<img width="1920" height="1092" alt="Снимок экрана 2026-07-07 164232" src="https://github.com/user-attachments/assets/8d64a2a2-990a-4382-9994-c85f5899463a" />
+
+
+<img width="1920" height="1083" alt="Снимок экрана 2026-07-07 164325" src="https://github.com/user-attachments/assets/cd0649d8-e885-4498-8d0c-0b168b2f3889" />
+
+<img width="1920" height="1089" alt="Снимок экрана 2026-07-07 171229" src="https://github.com/user-attachments/assets/a9cb5675-a02d-498c-9b1c-396c5d0533f1" />
+
+<img width="1363" height="724" alt="Снимок экрана 2026-07-07 165049" src="https://github.com/user-attachments/assets/98c157d0-d30b-4aa8-b256-f98b69a0abf3" />
+
+Cсылка на fork
+
+https://github.com/anastasiazveryukova/shvirtd-example-python.git
 
 ## Задача 5 (*)
 1. Напишите и задеплойте на вашу облачную ВМ bash скрипт, который произведет резервное копирование БД mysql в директорию "/opt/backup" с помощью запуска в сети "backend" контейнера из образа ```schnitzler/mysqldump``` при помощи ```docker run ...``` команды. Подсказка: "документация образа."
