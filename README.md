@@ -216,6 +216,18 @@ tar -xf terraform.tar
 
 <img width="1429" height="532" alt="Снимок экрана 2026-07-10 145125" src="https://github.com/user-attachments/assets/165f8270-d9e6-4e26-aecf-c10d3dd05c47" />
 
+Извлекла бы бинарный файл по хэшу
+
+```
+tar -xf "temp_extract/blobs/sha256/597a09a255459032bc4f70f74566919bf7c4fa81bbc511740678d3f1b86d61d8" -C ./ bin/terraform 
+```
+
+И наделила бы правами
+
+```
+chmod +x ./bin/terraform 
+```
+
 Альтернативный вариант с cp
 
 <img width="1357" height="469" alt="Снимок экрана 2026-07-08 153254" src="https://github.com/user-attachments/assets/63160a08-8812-4156-bf06-143e185f5477" />
