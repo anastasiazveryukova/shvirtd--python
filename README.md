@@ -186,8 +186,37 @@ https://github.com/anastasiazveryukova/shvirtd-example-python.git
 Скачайте docker образ ```hashicorp/terraform:latest``` и скопируйте бинарный файл ```/bin/terraform``` на свою локальную машину, используя dive и docker save.
 Предоставьте скриншоты  действий .
 
+Скачала образ 
+```
+docker pull hashicorp/terraform:latest
+```
 
-С помощью dive и docker save не удалось извлечь бинарный файл, а через docker cp это делается проще и быстрее.
+Запустила интерактивную оболочку Dive с доступом к Docker socket, чтобы можно было анализировать слои образа:
+```
+docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive:latest hashicorp/terraform:latest
+
+```
+<img width="1653" height="898" alt="Снимок экрана 2026-07-10 144912" src="https://github.com/user-attachments/assets/809a9c13-dc6d-485f-b39c-fd55ac6ba9e0" />
+
+Сохранила образ в архив
+
+```
+docker save hashicorp/terraform:latest -o terraform.tar
+
+```
+
+Распаковала
+
+```
+tar -xf terraform.tar
+
+```
+
+При проверке файла с номером хэша, который соответствует /bin/terraform не оказалось, пробовала несколько раз. 
+
+<img width="1429" height="532" alt="Снимок экрана 2026-07-10 145125" src="https://github.com/user-attachments/assets/165f8270-d9e6-4e26-aecf-c10d3dd05c47" />
+
+Альтернативный вариант с cp
 
 <img width="1357" height="469" alt="Снимок экрана 2026-07-08 153254" src="https://github.com/user-attachments/assets/63160a08-8812-4156-bf06-143e185f5477" />
 
